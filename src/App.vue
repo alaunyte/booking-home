@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/"><img src="@/assets/logo.png" alt="logo"></router-link>
-      <span v-if="!loggedIn">
+      <img src="@/assets/logo.png" alt="logo">
+      <span v-if="displayMenu">
+          <router-link to="/properties">Properties</router-link>
+          <button @click="logout">Sign Out</button>
+        </span>
+      <span v-else>
         <router-link to="/login">Login</router-link>
         <router-link to="/register">Register</router-link>
       </span>
-      <span v-else>
-          <router-link to="/properties">Properties</router-link>
-          <button @click="signOut">Sign Out</button>
-        </span>
     </div>
     <router-view/>
   </div>
@@ -19,13 +19,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 export default {
-  data() {
-    return {
-      loggedIn: false,
-    };
+  computed: {
+    displayMenu() {
+      return this.$route.path !== '/login' && this.$route.path !== '/register';
+    },
   },
   methods: {
-    signout() {
+    logout() {
       firebase.auth().signOut();
     },
   },
@@ -62,6 +62,18 @@ export default {
 }
 #nav img {
   height: 60px;
+}
+#nav button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #d2d86e;
+  transition: 1s;
+}
+#nav button:hover {
+  background-color: #95956e;
+  color: #fff;
 }
 @media only screen and (min-width: 800px){
   #nav {

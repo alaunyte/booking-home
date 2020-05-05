@@ -14,9 +14,19 @@
             </div>
         </div>
         <label>Email</label>
-        <input type="email" name="email" id="email" placeholder="email@email.com">
+        <input
+        type="email"
+        v-model="email"
+        id="emial"
+        placeholder="email@email.com"
+        />
         <label>Password</label>
-        <input type="password" name="password" id="password" placeholder="Password">
+        <input
+            type="password"
+            v-model="password"
+            id="password"
+            placeholder="Password"
+        />
         <button>Register</button>
     </form>
   </div>
@@ -41,7 +51,7 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => this.$router.push('/login'))
+        .then(() => this.$router.push('/properties'))
         .catch((error) => {
           this.error = error.message;
         });

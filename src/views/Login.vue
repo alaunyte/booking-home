@@ -1,15 +1,52 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-    <form>
+    <h1 v-if="error">{{ error }}</h1>
+    <form @submit.prevent="login">
         <label>Email</label>
-        <input type="email" name="email" id="email" placeholder="email@email.com">
-        <label>Password</label>
-        <input type="password" name="password" id="password" placeholder="Password">
+        <input
+        type="email"
+        v-model="email"
+        id="emial"
+        placeholder="email@email.com"
+      />
+      <label>Password</label>
+      <input
+        type="password"
+        v-model="password"
+        id="password"
+        placeholder="Password"
+      />
         <button>Login</button>
     </form>
   </div>
 </template>
+<script>
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: null,
+    };
+  },
+  methods: {
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => this.$router.replace('/properties'))
+        .catch((error) => {
+          this.error = error.message;
+        });
+    },
+  },
+};
+</script>
 <style scoped>
 form {
     display: flex;
