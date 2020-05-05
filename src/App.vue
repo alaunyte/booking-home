@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img src="@/assets/logo.png" alt="logo">
+      <router-link to="/home"><img src="@/assets/logo.png" alt="logo"></router-link>
       <span v-if="displayMenu">
           <router-link to="/properties">Properties</router-link>
           <button @click="logout">Sign Out</button>
@@ -42,7 +42,7 @@ export default {
 }
 
 #nav {
-  height: 100px;
+  height: 110px;
   padding: 20px 0;
   display: flex;
   flex-direction: column;
@@ -62,6 +62,7 @@ export default {
 }
 #nav img {
   height: 60px;
+  margin-bottom: 15px;
 }
 #nav button {
   padding: 10px;
@@ -81,6 +82,9 @@ export default {
   padding: 20px 100px;
   flex-direction: row;
   justify-content: space-between;
-}
+  }
+  #nav img {
+    margin-bottom: 0;
+  }
 }
 </style>

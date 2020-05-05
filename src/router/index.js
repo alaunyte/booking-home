@@ -9,11 +9,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
     meta: {
-      requiresAnon: true,
+      requiresAuth: true,
     },
   },
   {
@@ -36,6 +36,30 @@ const routes = [
     path: '/properties',
     name: 'Properties',
     component: () => import(/* webpackChunkName: "properties" */ '../views/Properties.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/add',
+    name: 'Add',
+    component: () => import(/* webpackChunkName: "add" */ '../views/Add.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: () => import(/* webpackChunkName: "edit" */ '../views/Edit.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/view',
+    name: 'View',
+    component: () => import(/* webpackChunkName: "view" */ '../views/View.vue'),
     meta: {
       requiresAuth: true,
     },

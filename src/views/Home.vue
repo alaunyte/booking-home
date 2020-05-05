@@ -5,7 +5,6 @@
       <p>No matter what kind of home or room you have to share, </p>
       <p>it simple and secure to host travelers.</p>
     </div>
-    <router-link to="/login">Let's start!</router-link>
   </div>
 </template>
 
