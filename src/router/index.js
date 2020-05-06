@@ -2,20 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import Home from '../views/Home.vue';
 
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-    meta: {
-      requiresAuth: true,
-    },
-  },
   {
     path: '/login',
     name: 'Login',
@@ -57,9 +48,9 @@ const routes = [
     },
   },
   {
-    path: '/view',
-    name: 'View',
-    component: () => import(/* webpackChunkName: "view" */ '../views/View.vue'),
+    path: '/viewPage/:id',
+    name: 'ViewPage',
+    component: () => import(/* webpackChunkName: "view"Page */ '../views/ViewPage.vue'),
     meta: {
       requiresAuth: true,
     },

@@ -6,11 +6,15 @@
         <div class="width-50">
             <div>
                 <label>First Name</label>
-                <input type="text" name="name" id="name" placeholder="First Name">
+                <input type="text" name="name" id="name" v-model="name" placeholder="First Name">
             </div>
             <div>
                 <label>Last Name</label>
-                <input type="text" name="lastName" id="lastName" placeholder="Last Name">
+                <input type="text"
+                name="lastName"
+                id="lastName"
+                v-model="lastName"
+                placeholder="Last Name">
             </div>
         </div>
         <label>Email</label>
@@ -34,6 +38,7 @@
 <script>
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 export default {
   name: 'Register',
@@ -51,6 +56,14 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
+        .then((response) => firebase
+          .firestore()
+          .collection('users')
+          .doc(response.user.uid)
+          .set({
+            name: this.name,
+            lastName: this.lastName,
+          }))
         .then(() => this.$router.push('/properties'))
         .catch((error) => {
           this.error = error.message;

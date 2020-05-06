@@ -2,7 +2,7 @@
   <div class="properties">
       <h1>My Properties</h1>
       <div v-for="house in houses" :key="house.id">
-        <router-link to="/view">
+        <router-link :to="{path: `/viewPage/${house.id}`}">
           <div class="card">
             <div class="img-text">
               <img v-bind:src="house.img" alt="House-photo">
@@ -22,6 +22,7 @@
 <script>
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 export default {
   name: 'Properties',
@@ -33,7 +34,9 @@ export default {
   beforeMount() {
     firebase
       .firestore()
-      .collection('house')
+      .collection('users')
+      .doc(firebase.auth().currentUser.uid)
+      .collection('houses')
       .get()
       .then((snapshot) => snapshot.docs.forEach((doc) => {
         this.houses.push({

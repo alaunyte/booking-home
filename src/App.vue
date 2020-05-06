@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/home"><img src="@/assets/logo.png" alt="logo"></router-link>
+      <router-link to="/properties"><img src="@/assets/logo.png" alt="logo"></router-link>
       <span v-if="displayMenu">
           <router-link to="/properties">Properties</router-link>
           <button @click="logout">Sign Out</button>
@@ -43,7 +43,7 @@ export default {
 
 #nav {
   height: 110px;
-  padding: 20px 0;
+  padding: 10px 0 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

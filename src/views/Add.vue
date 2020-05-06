@@ -13,7 +13,7 @@
           <input type="number" id="price" v-model="price" placeholder="78 one night">
           <label>Description</label>
           <textarea name="description" placeholder="Type something about your place.."
-          id="description" cols="30" rows="10"></textarea>
+          id="description" v-model="description" cols="30" rows="10"></textarea>
           <button>Add</button>
       </form>
   </div>
@@ -22,6 +22,7 @@
 <script>
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 export default {
   name: 'Add',
@@ -39,7 +40,9 @@ export default {
     add() {
       firebase
         .firestore()
-        .collection('house')
+        .collection('users')
+        .doc(firebase.auth().currentUser.uid)
+        .collection('houses')
         .add({
           img: this.image,
           title: this.title,
