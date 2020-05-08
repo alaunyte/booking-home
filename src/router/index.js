@@ -40,9 +40,9 @@ const routes = [
     },
   },
   {
-    path: '/edit',
-    name: 'Edit',
-    component: () => import(/* webpackChunkName: "edit" */ '../views/Edit.vue'),
+    path: '/editPage/:id',
+    name: 'EditPage',
+    component: () => import(/* webpackChunkName: "editPage" */ '../views/EditPage.vue'),
     meta: {
       requiresAuth: true,
     },

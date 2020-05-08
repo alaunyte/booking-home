@@ -41,7 +41,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => this.$router.replace('/properties'))
         .catch((error) => {
-          this.error = error.message;
+          this.error = error;
         });
     },
   },

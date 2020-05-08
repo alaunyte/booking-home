@@ -2,20 +2,21 @@
   <div class="properties">
       <h1>My Properties</h1>
       <div v-for="house in houses" :key="house.id">
-        <router-link :to="{path: `/viewPage/${house.id}`}">
           <div class="card">
             <div class="img-text">
               <img v-bind:src="house.img" alt="House-photo">
+              <router-link :to="{path: `/viewPage/${house.id}`}">
               <div class="text">
                 <h1>{{ house.title }}</h1>
                 <p>{{ house.city }}</p>
               </div>
+              </router-link>
             </div>
-            <router-link to="/edit">Edit</router-link>
+            <router-link class="edit" :to="{path: `/editPage/${house.id}`}">Edit</router-link>
           </div>
-        </router-link>
       </div>
       <router-link to="/add"><button>Add Property</button></router-link>
+      <Footeris />
   </div>
 </template>
 
@@ -23,6 +24,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import Footeris from '@/components/Footeris.vue';
 
 export default {
   name: 'Properties',
@@ -30,6 +32,9 @@ export default {
     return {
       houses: [],
     };
+  },
+  components: {
+    Footeris,
   },
   beforeMount() {
     firebase
@@ -75,6 +80,11 @@ a {
   width: 100%;
   height: 300px;
   object-fit: cover;
+}
+.edit {
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  padding: 10px 20px;
 }
 .properties button {
   padding: 10px;
